@@ -1,0 +1,9 @@
+[
+  {"object": {"outlook": "sunny",  "temp": "cold", "routine": "indoors"},  "answer": "no"},
+  {"object": {"outlook": "sunny",  "temp": "warm", "routine": "outdoors"}, "answer": "no"},
+  {"object": {"outlook": "cloudy", "temp": "warm", "routine": "indoors"},  "answer": "no"},
+  {"object": {"outlook": "sunny",  "temp": "warm", "routine": "indoors"},  "answer": "dunno"},
+  {"object": {"outlook": "cloudy", "temp": "cold", "routine": "indoors"},  "answer": "yes"},
+  {"object": {"outlook": "cloudy", "temp": "cold", "routine": "outdoors"}, "answer": "yes"},
+  {"object": {"outlook": "sunny",  "temp": "cold", "routine": "outdoors"}, "answer": "yes"}
+]

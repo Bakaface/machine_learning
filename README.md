@@ -1,0 +1,1 @@
+This repo contains implementations of some machine learning methods. The project not supposed to be a library, I just decided to implement some algorithms so i could better understand them.

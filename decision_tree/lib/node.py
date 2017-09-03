@@ -4,6 +4,7 @@ class Node(object):
     self.answer = None
     self.children = {}
     self.indent = '..'
+    self.training_objects_count = 0
 
   def add_child(self, node, key):
     self.children[key] = node
@@ -16,8 +17,8 @@ class Node(object):
 
   def __print(self, indent, key, attribute, answer):
     if self.is_end_node():
-      print(indent + f"[(-{key}->), ({answer})]")
+      print(indent + f"[(-{key}->), ({answer})] {self.training_objects_count} o.")
     else:
-      print(indent + f"[(-{key}->), {attribute}]")
+      print(indent + f"[(-{key}->), {attribute}] {self.training_objects_count} o.")
       for key, node in self.children.items():
         node.__print(indent + self.indent, key, node.attribute, node.answer)

@@ -69,6 +69,8 @@ class ID3(object):
 
   @staticmethod
   def __learn(node, training_sample):
+    #setting number or objects passed through current node
+    node.training_objects_count = len(training_sample)
     #forming list of all actual answers
     answers = list(set([element['answer'] for element in training_sample]))
     for answer in answers:

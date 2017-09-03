@@ -1,13 +1,7 @@
 from lib.node import Node
-from statistics import mode
-from functools import reduce
 from math import log2
-from os import path
 
 import json
-import pprint
-
-pp = pprint.PrettyPrinter()
 
 class ID3(object):
   def __init__(self, node):
@@ -46,8 +40,7 @@ class ID3(object):
       sample_enthropy = sum(
           p * -1 * log2(p)
           for p in [sample_answers.count(answer)/len(sample_answers) for answer in answers]
-          if p > 0
-        )
+          if p > 0)
       #count subtrahend of gain formula (Enthtopy(S) - sum(Sv * Enthtopy(Sv)/S)))
       gain_subtrahend = 0
       for value in values:
@@ -55,14 +48,12 @@ class ID3(object):
         value_answers = [
           element['answer'] 
           for element in training_sample 
-          if element['object'][attribute] == value
-        ]
+          if element['object'][attribute] == value]
         #count enthropy for one of possible child nodes
         value_enthropy = sum(
           p * -1 * log2(p)
           for p in [value_answers.count(answer)/len(value_answers) for answer in answers]
-          if p > 0
-        )
+          if p > 0)
         gain_subtrahend += len(value_answers) * value_enthropy / len(sample_answers)
       sample_gains[attribute] = sample_enthropy - gain_subtrahend
     return max(sample_gains, key=sample_gains.get)
@@ -79,14 +70,9 @@ class ID3(object):
         return
     #forming list of values for each attribute
     attributes = {
-      attribute: list(
-        set(
-          map(
-            lambda element: element['object'][attribute], 
-            training_sample
-          )
-        )
-      )
+      attribute: list(set(map(
+        lambda element: element['object'][attribute], 
+        training_sample)))
       for attribute in training_sample[0]['object'].keys()
     }
     attribute = ID3.__gain(training_sample, attributes, answers)
@@ -97,8 +83,6 @@ class ID3(object):
       new_traning_sample = [sample for sample in training_sample if sample['object'][attribute] == value]
       ID3.__learn(new_node, new_traning_sample)
     return
-
-  
 
 if __name__ == "__main__":
   training_sample = json.loads(open('data/sample.json').read())

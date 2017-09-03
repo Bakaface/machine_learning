@@ -1,4 +1,5 @@
 from lib.node import Node
+from lib.convert import convert_file
 from math import log2
 
 import json
@@ -85,7 +86,8 @@ class ID3(object):
     return
 
 if __name__ == "__main__":
-  training_sample = json.loads(open('data/sample.json').read())
+  #training_sample = json.loads(open('data/sample.json').read())
+  training_sample = convert_file('data/balance-scale.data', answer_column_index=0)
   node = Node()
   id3 = ID3(node)
   id3.learn(training_sample)
